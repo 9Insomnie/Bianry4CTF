@@ -1,3 +1,4 @@
+Kerberos 对时间差异很敏感。使用包装脚本(ft.sh)在执行攻击之前调整本地时钟，使其与服务器时间一致。
 ```
 #!/bin/bash
 # Usage example: ./ft.sh $ip <command>
