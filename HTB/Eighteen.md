@@ -1,9 +1,10 @@
-# RECON
-## Creds
-Machine infomation:
-As is common in real life Windows penetration tests, you will start the Eighteen box with credentials for the following account: kevin / iNa2we6haRj2gaw!
+# 侦察
+## 凭证
+机器信息:
 
-## Port Scan
+	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：`kevin/iNa2we6haRj2gaw!`
+
+## 端口扫描
 
 ```
 $ nmap -sC -sV -vv -oA 10.129.156.245
@@ -60,4 +61,4 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 Host script results:
 |_clock-skew: 7h00m03s
 ```
-- **Domain**: `eighteen.htb`
+- **域名**: `eighteen.htb`
