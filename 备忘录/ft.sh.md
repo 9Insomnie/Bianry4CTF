@@ -1,4 +1,3 @@
-直接结合 faketime 和 ntpdate 并不奏效，因为它只显示偏移量而不是直接的日期字符串。
 ```
 #!/bin/bash
 # Usage example: ./ft.sh $ip <command>
