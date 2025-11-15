@@ -1,2 +1,2 @@
-# Binary for CTFs
-A repository storing the binaries of CTFs to help test and debug for writeups.
+# # CTF 二进制文件
+一个存储 CTF 二进制文件的仓库，用于帮助测试和调试写题报告。
