@@ -1,8 +1,9 @@
 # 侦察
 ## 凭证
+
 机器信息:
 
-	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：`kevin/iNa2we6haRj2gaw!`
+	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：kevin/iNa2we6haRj2gaw!
 
 ## 端口扫描
 
