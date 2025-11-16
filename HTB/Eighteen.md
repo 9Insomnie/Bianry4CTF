@@ -69,6 +69,7 @@ Host script results:
 ```BASH
 impacket-mssqlclient 'eighteen.htb/kevin:iNa2we6haRj2gaw!@10.129.24.98'
 ```
+
 **结果**：以 `guest` 身份连接，权限有限。
 #### 枚举登录
 
