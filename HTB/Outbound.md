@@ -381,9 +381,7 @@ where
 
 可用脚本完成利用：
 
-我们滥用 `--time` 参数注入换行符，直接将 payload 行写入 `/etc/passwd`，将 `axura` 提升到 UID 0。
-
-获取 root 权限：
+我们滥用 `--time` 参数注入换行符，直接将 payload 行写入 `/etc/passwd`，将 `n0irx` 提升到 UID 0。
 
 ---
 
