@@ -1,5 +1,3 @@
-# HackTheBox - Outbound 靶机通关笔记
-
 ## 0x00 侦察阶段
 
 ### 0x01 初始凭证
@@ -18,7 +16,7 @@ HTTP 流量被无缝重定向至 `http://mail.outbound.htb/`
 
 80 端口部署了 Roundcube Webmail 实例，可使用预设凭证 `tyler / LhKL1o9Nm3X2` 登录：
 
-此配置与 [DarkCorp](https://4xura.com/ctf/htb/htb-writeup-darkcorp/#toc-head-3) 案例相似（当时版本为 `1.6.7`）。本次目标使用升级版本：`1.6.10`，并加载了高价值插件——文件压缩、文件系统访问和上传功能，攻击面显著扩大， ripe for exploitation。
+本次目标使用版本：`1.6.10`，并加载了高价值插件——文件压缩、文件系统访问和上传功能，攻击面显著扩大。
 
 ### 0x12 CVE-2025-49113 漏洞利用
 
@@ -381,7 +379,7 @@ where
 
 可用脚本完成利用：
 
-我们滥用 `--time` 参数注入换行符，直接将 payload 行写入 `/etc/passwd`，将 `n0irx` 提升到 UID 0。
+我们滥用 `--time` 参数注入换行符，直接将 payload 行写入 `/etc/passwd`，将 `账户` 提升到 UID 0。
 
 获取 root 权限
 
